@@ -3,6 +3,7 @@ package com.bsptechs.service.inter;
 import com.bsptechs.entities.Form;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public interface FormServiceInter {
@@ -14,5 +15,5 @@ public interface FormServiceInter {
 
     void deleteById(Integer integer);
 
-    ArrayList<Form> findAll();
+    List<Form> findAll();
 }

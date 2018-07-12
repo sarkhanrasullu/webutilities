@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -33,7 +34,7 @@ public class FormServiceImpl implements FormServiceInter {
     }
 
     @Override
-    public ArrayList<Form> findAll() {
-        return null;
+    public List<Form> findAll() {
+        return formDao.findAll();
     }
 }

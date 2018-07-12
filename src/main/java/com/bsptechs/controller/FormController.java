@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,9 +26,13 @@ public class FormController {
     FormServiceInter fsi;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String formIndex(Map<String, Object> model, @ModelAttribute("forms") FormDto forms) {
-        ArrayList<Form> list = fsi.findAll();
-        model.put("forms", list);
+    public String formIndex(Map<String, Object> model, @ModelAttribute("forms") FormDto form) {
+        List<Form> list = fsi.findAll();
+        model.put("formList", list);
+        for(Form f: list){
+            System.out.println(f);
+        }
+        model.put("form",form);
         return HtmlPage.pageForm;
     }
 
@@ -36,11 +41,13 @@ public class FormController {
             @ModelAttribute("forms") FormDto formDto,
             @RequestParam String action) {
         System.out.println("form="+formDto);
+        System.out.println("action="+action);
         Form form = new Form(formDto.getId());
         form.setName(formDto.getName());
         form.setWebsite(formDto.getWebsite());
         if (action != null) {
             if (action.equalsIgnoreCase("add")) {
+                System.out.println("add process");
                 fsi.save(form);
             } else if (action.equalsIgnoreCase("delete")) {
                 fsi.deleteById(formDto.getId());
@@ -50,6 +57,6 @@ public class FormController {
         }
 
 
-        return "redirect:/" + HtmlPage.pageForm;
+        return "redirect:/forms";
     }
 }
