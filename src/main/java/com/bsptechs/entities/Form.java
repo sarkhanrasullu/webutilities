@@ -32,6 +32,11 @@ public class Form implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "name")
     private String name;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "website")
+    private String website;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "formId", fetch = FetchType.LAZY)
     private List<FormData> formDataList;
     @OneToMany(mappedBy = "formId", fetch = FetchType.LAZY)
@@ -40,4 +45,6 @@ public class Form implements Serializable {
     public Form(int id){
         this.id = id;
     }
+    public Form(String website){this.website=website;}
+
 }

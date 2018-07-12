@@ -37,6 +37,9 @@ public class FormColumn implements Serializable {
     @JoinColumn(name = "form_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
     private Form formId;
+    @JoinColumn(name = "form_website", referencedColumnName = "website")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Form formWebsite;
 
     public FormColumn(){
 

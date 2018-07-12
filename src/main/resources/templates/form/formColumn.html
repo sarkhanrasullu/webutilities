@@ -31,6 +31,10 @@
                                             <td>Name</td>
                                             <td>Registration Form</td>
                                             <td>www.bsptechs.com</td>
+
+                                            <td>
+                                                <a  class="btn btn-primary aBtn">Add</a>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
@@ -50,6 +54,7 @@
                                             <td>Registration Form</td>
                                             <td>www.bsptechs.com</td>
                                         </tr>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -58,11 +63,58 @@
                 </div>
             </div>
         </div>
+
+        <div class="myFormColumn">
+            <form action="formColumns/crud" method="POST" modelAttribute="formColumns">
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Add data</h5>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="form-group">
+                                    <input name="name" class="form-control" placeholder="Name" value="">
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control" th:field="${forms.id}"  id="dropOperatorName">
+                                        <option value="0" th:text="select form" ></option>
+                                        <option th:each="form : ${forms}" th:value="${form.id}" th:text="${form.name}"></option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control" th:field="${forms.id}"  id="dropOperatorWebsite">
+                                        <option value="0" th:text="select form website" ></option>
+                                        <option th:each="form : ${forms}" th:value="${form.id}" th:text="${form.website}"></option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success" value="add" name="action">
+                                    <input type="hidden" name="id" id="idElement"/>
+                                    Add form column
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+
         <div th:insert="common/fragments/footer_content :: footer_content"></div>
     </div>
 </div>
 
-
+<script>
+    function setId(id) {
+        document.getElementById("idElement").value = id;
+    }
+</script>
 </body>
 
 <div th:insert="common/fragments/footer :: footer"></div>

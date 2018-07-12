@@ -55,15 +55,16 @@ public class UserController {
         return "redirect: /" + HtmlPage.pageUsers;
     }
 
-    @RequestMapping(path = "signup", method = RequestMethod.POST)
-    public String signUp(@ModelAttribute("user") UserFormDto userForm) {
+    @RequestMapping(path = "signUp", method = RequestMethod.POST)
+    public String signUp(@ModelAttribute("user") UserFormDto userForm, @RequestParam String action) {
         User user = new User();
         user.setName(userForm.getName());
         user.setSurname(userForm.getSurname());
         user.setEmail(userForm.getEmail());
         user.setPassword(passwordEncoder.encode(userForm.getPassword()));
-
-        usi.save(user);
+        if(action.equalsIgnoreCase("register")) {
+            usi.save(user);
+        }
         return "redirect: /" + HtmlPage.pageSign;
     }
 

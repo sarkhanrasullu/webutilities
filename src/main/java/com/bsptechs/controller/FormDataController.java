@@ -18,7 +18,7 @@ import java.util.Map;
 
 
 @Controller
-@RequestMapping("formdata")
+@RequestMapping("formData")
 public class FormDataController {
 
     @Autowired

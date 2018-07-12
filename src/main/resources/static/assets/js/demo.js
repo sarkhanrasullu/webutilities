@@ -1,5 +1,15 @@
 type = ['','info','success','warning','danger'];
 
+$(document).ready(function(){
+
+    $('.table .aBtn ').on('click', function(event){
+        event.preventDefault();
+        $('.myForm #exampleModal').modal();
+
+
+        });
+
+});
 
 demo = {
     initPickColor: function(){

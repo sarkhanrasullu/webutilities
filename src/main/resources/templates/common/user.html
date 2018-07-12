@@ -19,12 +19,15 @@
 
                             </div>
                             <div class="content">
-                                <form method="POST" action="../controller/UserController.php">
+                                <form method="POST"
+                                      action="/crud"
+                                     >
+
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="name">Name</label>
-                                                <input name="name" class="form-control" placeholder="Name" value="<?=$user["name"]; ?>">
+                                                <input name="name" class="form-control" placeholder="Name" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -32,7 +35,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="surname">Surname</label>
-                                                <input name="surname" class="form-control" placeholder="Surname" value="<?=$user["surname"]; ?>">
+                                                <input name="surname" class="form-control" placeholder="Surname" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -40,7 +43,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="email">Email</label>
-                                                <input name="email"  class="form-control" placeholder="Email" value="<?=$user["email"]; ?>">
+                                                <input name="email"  class="form-control" placeholder="Email" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -57,7 +60,7 @@
                                     <button type="submit"
                                             class="btn btn-info btn-fill pull-right"
                                             name="action"
-                                            value="register">
+                                            value="add">
                                         Submit
                                     </button>
                                     <div class="clearfix"></div>
