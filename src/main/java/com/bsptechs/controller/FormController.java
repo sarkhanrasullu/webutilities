@@ -32,12 +32,13 @@ public class FormController {
     }
 
     @RequestMapping(path = "crud", method = RequestMethod.POST)
-    public String userCrud(
+    public String formCrud(
             @ModelAttribute("forms") FormDto formDto,
             @RequestParam String action) {
+        System.out.println("form="+formDto);
         Form form = new Form(formDto.getId());
-
         form.setName(formDto.getName());
+        form.setWebsite(formDto.getWebsite());
         if (action != null) {
             if (action.equalsIgnoreCase("add")) {
                 fsi.save(form);

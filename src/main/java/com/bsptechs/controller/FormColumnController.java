@@ -1,6 +1,7 @@
 package com.bsptechs.controller;
 
 import com.bsptechs.beans.FormColumnDto;
+import com.bsptechs.entities.Form;
 import com.bsptechs.entities.FormColumn;
 import com.bsptechs.service.inter.FormColumnServiceInter;
 import com.bsptechs.util.HtmlPage;
@@ -16,7 +17,7 @@ import java.util.Map;
 
 
 @Controller
-@RequestMapping("formcolumns")
+@RequestMapping("formColumns")
 public class FormColumnController {
 
     @Autowired
@@ -35,6 +36,8 @@ public class FormColumnController {
             @RequestParam String action) {
         FormColumn formColumn = new FormColumn(formColumnDto.getId());
         formColumn.setName(formColumnDto.getName());
+        formColumn.setFormId(new Form(formColumnDto.getId()));
+        formColumn.setFormWebsite(new Form(formColumnDto.getFormWebsite()));
 
         if (action != null) {
             if (action.equalsIgnoreCase("add")) {
