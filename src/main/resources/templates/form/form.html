@@ -34,10 +34,10 @@
                                             <td th:text="${f.name}">Registration form</td>
                                             <td th:text="${f.website}">www.bsptechs.com</td>
                                             <td>
-                                                <a href="/formcolumns" class="fas fa-wrench"></a>
+                                                <a th:href="@{/formColumns(formId=${f.id},formWebsite=${f.website})}" class="fas fa-wrench"/>
                                             </td>
                                             <td>
-                                                <a href="/formdata" class="far fa-eye">
+                                                <a href="/formData" class="far fa-eye">
                                                 </a>
                                             </td>
                                         </tr>
@@ -57,7 +57,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add data</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Add form</h5>
                     </div>
                     <form
                             action="#"

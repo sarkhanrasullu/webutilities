@@ -1,3 +1,16 @@
+$(document).ready(function () {
+
+    $('.table .aBtn ').on('click', function (event) {
+        event.preventDefault();
+        $('.myForm #exampleModal').modal();
+
+    });
+
+
+
+});
+
+
 (function ($) {
     "use strict";
     $('.column100').on('mouseover', function () {

@@ -25,9 +25,10 @@ public class FormDataController {
     FormDataServiceInter fdi;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String formIndex(Map<String, Object> model, @ModelAttribute("dataForm") FormDataDto dataForm) {
+    public String formIndex(Map<String, Object> model, @ModelAttribute("data") FormDataDto data) {
         ArrayList<FormData> list = fdi.findAll();
-        model.put("data", list);
+        model.put("dataList", list);
+        model.put("data",data);
         return HtmlPage.pageFormData;
     }
 
@@ -37,6 +38,7 @@ public class FormDataController {
             @RequestParam String action) {
         FormData formData = new FormData();
         formData.setId(formDataDto.getId());
+        formData.setValue(formDataDto.getValue());
         formData.setFormColumnId(new FormColumn(formDataDto.getFormColumnId()));
         formData.setFormId(new Form(formDataDto.getFormId()));
         formData.setUserId(new User(formDataDto.getUserId()));
@@ -54,7 +56,7 @@ public class FormDataController {
         }
 
 
-        return "redirect:/" + HtmlPage.pageFormData;
+        return "redirect:/formData";
     }
 
 }

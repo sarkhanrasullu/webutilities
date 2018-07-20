@@ -6,6 +6,7 @@ import lombok.Data;
 public class FormDataDto {
 
     private Integer id;
+    private String value;
     private Integer formColumnId;
     private Integer formId;
     private Integer userId;

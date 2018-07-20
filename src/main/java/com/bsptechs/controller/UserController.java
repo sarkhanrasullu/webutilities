@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -25,9 +26,10 @@ public class UserController {
     PasswordEncoder passwordEncoder;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String sign(Map<String, Object> model, @ModelAttribute("userForm") UserFormDto userForm) {
-        ArrayList<User> list = usi.findAll();
-        model.put("users", list);
+    public String sign(Map<String, Object> model, @ModelAttribute("user") UserFormDto user) {
+        List<User> list = usi.findAll();
+        model.put("userList", list);
+        model.put("user", user);
         return HtmlPage.pageUsers;
     }
 
@@ -52,7 +54,7 @@ public class UserController {
         }
 
 
-        return "redirect: /" + HtmlPage.pageUsers;
+        return "redirect:/users";
     }
 
     @RequestMapping(path = "signUp", method = RequestMethod.POST)
@@ -65,7 +67,7 @@ public class UserController {
         if(action.equalsIgnoreCase("register")) {
             usi.save(user);
         }
-        return "redirect: /" + HtmlPage.pageSign;
+        return "redirect: /users";
     }
 
 }
