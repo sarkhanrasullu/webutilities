@@ -34,7 +34,7 @@
                                             <td th:text="${f.name}">Registration form</td>
                                             <td th:text="${f.website}">www.bsptechs.com</td>
                                             <td>
-                                                <a th:href="@{/formColumns(formId=${f.id},formWebsite=${f.website})}" class="fas fa-wrench"/>
+                                                <a th:href="@{/formColumns(formId = ${f.getId()})}" class="fas fa-wrench"/>
                                             </td>
                                             <td>
                                                 <a href="/formData" class="far fa-eye">
