@@ -48,4 +48,5 @@ public class FormColumn implements Serializable {
     public FormColumn(int id){
         this.id = id;
     }
+
 }

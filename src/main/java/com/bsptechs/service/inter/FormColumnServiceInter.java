@@ -1,7 +1,8 @@
 package com.bsptechs.service.inter;
 
+
 import com.bsptechs.entities.FormColumn;
-import java.util.ArrayList;
+import java.util.List;
 
 public interface FormColumnServiceInter {
 
@@ -11,5 +12,7 @@ public interface FormColumnServiceInter {
 
     void deleteById(Integer integer);
 
-    ArrayList<FormColumn> findAll();
+    List<FormColumn> findAll();
+
+
 }

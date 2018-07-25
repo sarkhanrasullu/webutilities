@@ -30,8 +30,8 @@
                                     <tr th:each="f : ${columnList}">
                                         <td th:text="${f.id}">1</td>
                                         <td th:text="${f.name}">Name</td>
-                                        <td th:text="${f.formId}">Registration Form</td>
-                                        <td th:text="${f.formWebsite}">www.bsptechs.com</td>
+                                        <td th:text="${f.formId.name}">Registration Form</td>
+                                        <td th:text="${f.formId.website}">www.bsptechs.com</td>
                                     </tr>
                                     </tbody>
                                 </table>

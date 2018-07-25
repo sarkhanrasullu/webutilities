@@ -32,17 +32,19 @@ public class FormColumnController {
         List<FormColumn> list = fcsi.findAll();
         model.put("columnList", list);
         model.put("column", column);
+
         return HtmlPage.pageFormColumn;
     }
 
     @RequestMapping(path = "crud", method = RequestMethod.POST)
     public String userCrud(
             @ModelAttribute("formColumns") FormColumnDto formColumnDto,
-            @RequestParam String action) {
+            @RequestParam String action,
+            @RequestParam int formId) {
         FormColumn formColumn = new FormColumn(formColumnDto.getId());
         formColumn.setName(formColumnDto.getName());
-        formColumn.setFormId(new Form(formColumnDto.getFormId()));
-        formColumn.setFormWebsite(new Form(formColumnDto.getFormWebsite()));
+        formColumn.setFormId(new Form(formId));
+        formColumn.setFormWebsite(fsi.findById(formId));
 
         if (action != null) {
             if (action.equalsIgnoreCase("add")) {

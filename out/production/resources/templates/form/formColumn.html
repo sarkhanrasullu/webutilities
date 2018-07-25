@@ -14,74 +14,72 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Fields of Form</h4>
-                                <p class="category">Fields of selected Form</p>
+                                <h4 class="title">Data of Generated Form</h4>
+                                <p class="category">Data of Generated form</p>
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <button type="button" class="btn btn-info aBtn" data-toggle="modal" data-target="#exampleModal">Add</button>
                                 <table class="table table-hover table-striped">
                                     <thead>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Form name</th>
-                                        <th>Website</th>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Form name</th>
+                                    <th>Website</th>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="f : ${columnList}">
-                                            <td th:text="${f.id}">1</td>
-                                            <td th:text="${f.name}">Name</td>
-                                            <td th:text="${f.formId}">Registration Form</td>
-                                            <td th:text="${f.formWebsite}">www.bsptechs.com</td>
-                                        </tr>
-
-
+                                    <tr th:each="f : ${columnList}">
+                                        <td th:text="${f.id}">1</td>
+                                        <td th:text="${f.name}">Name</td>
+                                        <td th:text="${f.formId.name}">Registration Form</td>
+                                        <td th:text="${f.formId.website}">www.bsptechs.com</td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div th:insert="common/fragments/footer_content :: footer_content"></div>
+    </div>
+    <div class="myForm">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <h5 class="modal-title" id="exampleModalLabel">Add data</h5>
                     </div>
                     <form action="#"
-                          th:action="@{/formColumns/crud}"
+                          th:action="@{/formColumns/crud(formId=${#request.getParameter('formId')})}"
                           th:object="${column}"
                           method="POST">
-                    <div class="modal-body">
+                        <div class="modal-body">
 
-                        <div class="form-group">
-                            <input class="form-control" placeholder="Name"
-                                   th:field=*{name} />
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Name"
+                                       th:field=*{name} />
+                            </div>
                         </div>
-
-
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary"
-                                th:name="action"
-                                th:value="add">
-                            Add Form Columns
-                        </button>
-                    </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary"
+                                    th:name="action"
+                                    th:value="add">
+                                Add Form Columns
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div th:insert="common/fragments/footer_content :: footer_content"></div>
+<script>
+    function setId(id) {
+        document.getElementById("idElement").value = id;
+    }
+</script>
 
 </body>
 

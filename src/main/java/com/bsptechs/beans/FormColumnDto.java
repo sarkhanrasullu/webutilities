@@ -5,9 +5,9 @@ import lombok.Data;
 @Data
 public class FormColumnDto {
 
-    private Integer id;
+    private int id;
     private String name;
-    private Integer formId;
+    private int formId;
     private String formWebsite;
 
 }

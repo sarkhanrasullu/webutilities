@@ -1,12 +1,14 @@
 package com.bsptechs.service.impl;
 
 import com.bsptechs.dao.inter.FormColumnDao;
+import com.bsptechs.entities.Form;
 import com.bsptechs.entities.FormColumn;
 import com.bsptechs.service.inter.FormColumnServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -31,7 +33,9 @@ public class FormColumnImpl implements FormColumnServiceInter {
     }
 
     @Override
-    public ArrayList<FormColumn> findAll() {
-        return null;
+    public List<FormColumn> findAll() {
+        return formColumnDao.findAll();
     }
+
+
 }
