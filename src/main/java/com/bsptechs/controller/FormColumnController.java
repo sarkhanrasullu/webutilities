@@ -24,12 +24,12 @@ public class FormColumnController {
 
     @Autowired
     FormColumnServiceInter fcsi;
-    @Autowired
-    FormServiceInter fsi;
+
 
     @RequestMapping(method = RequestMethod.GET)
-    public String formIndex(Map<String, Object> model, @ModelAttribute("formColumns") FormColumnDto column) {
-        List<FormColumn> list = fcsi.findAll();
+    public String formIndex(Map<String, Object> model, @ModelAttribute("formColumns") FormColumnDto column,
+                            @RequestParam Form formId) {
+        List<FormColumn> list = fcsi.findColumnsByFormId(formId);
         model.put("columnList", list);
         model.put("column", column);
 
@@ -41,10 +41,11 @@ public class FormColumnController {
             @ModelAttribute("formColumns") FormColumnDto formColumnDto,
             @RequestParam String action,
             @RequestParam int formId) {
+        Form form = new Form(formId);
         FormColumn formColumn = new FormColumn(formColumnDto.getId());
         formColumn.setName(formColumnDto.getName());
-        formColumn.setFormId(new Form(formId));
-        formColumn.setFormWebsite(fsi.findById(formId));
+        formColumn.setFormId(form);
+        formColumn.setFormWebsite(form);
 
         if (action != null) {
             if (action.equalsIgnoreCase("add")) {

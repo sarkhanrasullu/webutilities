@@ -7,9 +7,9 @@ public class FormDataDto {
 
     private Integer id;
     private String value;
-    private Integer formColumnId;
-    private Integer formId;
-    private Integer userId;
+    private int formColumnId;
+    private int formId;
+    private int userId;
 
 
 }

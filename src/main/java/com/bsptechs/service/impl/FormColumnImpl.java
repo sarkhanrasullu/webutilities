@@ -37,5 +37,10 @@ public class FormColumnImpl implements FormColumnServiceInter {
         return formColumnDao.findAll();
     }
 
+    @Override
+    public List<FormColumn> findColumnsByFormId(Form formId) {
+        return formColumnDao.findColumnsByFormId(formId);
+    }
+
 
 }

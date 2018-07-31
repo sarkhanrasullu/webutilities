@@ -1,5 +1,6 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:td="http://www.thymeleaf.org" xmlns:tr="http://www.thymeleaf.org"
+      lang="en">
 <head>
     <div th:insert="common/fragments/header :: header"></div>
 </head>
@@ -19,22 +20,15 @@
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <button type="button" class="btn btn-info aBtn" data-toggle="modal" data-target="#exampleModal">Add</button>
-                                <table class="table table-hover table-striped">
-                                    <thead>
-                                        <th>ID</th>
-                                        <th>Value</th>
-                                        <th>Column Name</th>
-                                        <th>Form Name</th>
-                                        <th>User Name</th>
-                                        <th></th>
+                                    <table class="table table-hover table-striped" >
+                                    <thead >
+                                        <th th:each="c : ${columnList}">
+                                            <th:block th:text="${c.name}"/>
+                                        </th>
                                     </thead>
-                                    <tbody>
+                                    <tbody >
                                         <tr th:each="f : ${dataList}">
-                                            <td th:text="f.id">1</td>
-                                            <td th:text="f.name">Sarkhan</td>
-                                            <td th:text="f.columnId.name">Rasullu</td>
-                                            <td th:text="f.formId.name">sarkhanrasullu@gmail.com</td>
-                                            <td th:text="f.userId.name">25</td>
+                                            <td th:text="${f.value}"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -45,7 +39,7 @@
             </div>
         </div>
         <div th:insert="common/fragments/footer_content :: footer_content"></div>
-    </div>
+    </div>0
     <div class="myForm">
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
             <div class="modal-dialog" role="document">
@@ -60,10 +54,15 @@
                             method="POST">
                         <div class="modal-body">
 
-                            <div class="form-group">
-                                <input class="form-control" placeholder="Name"
-                                       th:field=*{value } />
-                            </div>
+                            <div class="form-group" th:each="c : ${columnList}" >
+
+                                    <label th:text="${c.name}" />
+                                    <input  class="form-control" th:field=*{value} />
+                                <input  th:name="formId" type="hidden" th:value="${#request.getParameter('formId')}"/>
+                                <input  th:name="columnId" type="hidden" th:value="${c.id}"/>
+                                </div>
+
+
 
                         </div>
                         <div class="modal-footer">

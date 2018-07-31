@@ -3,7 +3,7 @@
 <head>
     <div th:insert="common/fragments/header :: header"></div>
 </head>
-<body>
+<body >
 <div class="wrapper">
     <div th:insert="common/fragments/left_sidebar :: left_sidebar"></div>
     <div class="main-panel">
@@ -14,8 +14,8 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Data of Generated Form</h4>
-                                <p class="category">Data of Generated form</p>
+                                <h4 class="title">Columns of Generated Form </h4>
+                                <p class="category">Columns of Generated form</p>
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <button type="button" class="btn btn-info aBtn" data-toggle="modal" data-target="#exampleModal">Add</button>
@@ -51,18 +51,20 @@
                         <h5 class="modal-title" id="exampleModalLabel">Add data</h5>
                     </div>
                     <form action="#"
-                          th:action="@{/formColumns/crud(formId=${#request.getParameter('formId')})}"
+                          th:action="@{/formColumns/crud}"
                           th:object="${column}"
                           method="POST">
-                        <div class="modal-body">
+                        <div class="modal-body" >
 
                             <div class="form-group">
                                 <input class="form-control" placeholder="Name"
                                        th:field=*{name} />
                             </div>
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input  th:name="formId" type="hidden" th:value="${#request.getParameter('formId')}"/>
                             <button type="submit" class="btn btn-primary"
                                     th:name="action"
                                     th:value="add">

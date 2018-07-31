@@ -49,4 +49,10 @@ public class FormColumn implements Serializable {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "FormColumn{" +
+                "id=" + id +
+                '}';
+    }
 }

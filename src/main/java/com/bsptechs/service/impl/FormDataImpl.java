@@ -1,6 +1,8 @@
 package com.bsptechs.service.impl;
 
 import com.bsptechs.dao.inter.FormDataDao;
+import com.bsptechs.entities.Form;
+import com.bsptechs.entities.FormColumn;
 import com.bsptechs.entities.FormData;
 import com.bsptechs.service.inter.FormDataServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -32,7 +35,13 @@ public class FormDataImpl implements FormDataServiceInter {
     }
 
     @Override
-    public ArrayList<FormData> findAll() {
-        return null;
+    public List<FormData> findAll() {
+        return formDataDao.findAll();
+
+    }
+
+    @Override
+    public List<FormData> findAllByFormColumnId(FormColumn formId) {
+        return formDataDao.findAllByFormColumnId(formId);
     }
 }

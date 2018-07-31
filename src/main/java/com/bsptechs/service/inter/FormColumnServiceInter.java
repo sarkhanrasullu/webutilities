@@ -1,7 +1,8 @@
 package com.bsptechs.service.inter;
 
-
+import com.bsptechs.entities.Form;
 import com.bsptechs.entities.FormColumn;
+import java.util.ArrayList;
 import java.util.List;
 
 public interface FormColumnServiceInter {
@@ -14,5 +15,5 @@ public interface FormColumnServiceInter {
 
     List<FormColumn> findAll();
 
-
+    List<FormColumn> findColumnsByFormId(Form formId);
 }
