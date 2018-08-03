@@ -5,6 +5,7 @@ import com.bsptechs.entities.Form;
 import com.bsptechs.entities.FormColumn;
 import com.bsptechs.entities.FormData;
 import com.bsptechs.entities.User;
+import com.bsptechs.service.inter.FormColumnServiceInter;
 import com.bsptechs.service.inter.FormDataServiceInter;
 import com.bsptechs.util.HtmlPage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 
 @Controller
@@ -23,23 +27,40 @@ public class FormDataController {
 
     @Autowired
     FormDataServiceInter fdi;
+    @Autowired
+    FormColumnServiceInter fci;
+
 
     @RequestMapping(method = RequestMethod.GET)
-    public String formIndex(Map<String, Object> model, @ModelAttribute("dataForm") FormDataDto dataForm) {
-        ArrayList<FormData> list = fdi.findAll();
-        model.put("data", list);
-        return HtmlPage.pageFormData;
-    }
+    public String formIndex(Map<String, Object> model, @ModelAttribute("data") FormDataDto data ,
+                            @RequestParam Form formId) {
+
+
+        List<FormColumn> columnList = fci.findColumnsByFormId(formId);
+        for (FormColumn columns : columnList) {
+            List<FormData> list = fdi.findAllByFormColumnId(columns);
+            model.put("dataList", list);
+        }
+        model.put("columnList", columnList);
+            model.put("data", data);
+
+            return HtmlPage.pageFormData;
+        }
 
     @RequestMapping(path = "crud", method = RequestMethod.POST)
     public String userCrud(
             @ModelAttribute("dataForm") FormDataDto formDataDto,
-            @RequestParam String action) {
+            @RequestParam String action,@RequestParam int columnId,
+            @RequestParam int formId) {
+
+        String[] data = formDataDto.getValue().split(",");
+        for (String fd : data){
         FormData formData = new FormData();
         formData.setId(formDataDto.getId());
-        formData.setFormColumnId(new FormColumn(formDataDto.getFormColumnId()));
-        formData.setFormId(new Form(formDataDto.getFormId()));
-        formData.setUserId(new User(formDataDto.getUserId()));
+        formData.setValue(fd);
+        formData.setFormColumnId(new FormColumn(columnId));
+        formData.setFormId(new Form(formId));
+        formData.setUserId(new User(1));
 
         if (action != null) {
             if (action.equalsIgnoreCase("add")) {
@@ -52,9 +73,10 @@ public class FormDataController {
             }
 
         }
+        }
 
 
-        return "redirect:/" + HtmlPage.pageFormData;
+        return "redirect:/formData";
     }
 
 }

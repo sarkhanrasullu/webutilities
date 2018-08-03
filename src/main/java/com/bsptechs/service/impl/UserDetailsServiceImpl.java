@@ -44,7 +44,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
             builder = org.springframework.security.core.userdetails.User.withUsername(email);
 
-            builder.disabled(!(user.getEnabled() != 0));
+            builder.disabled(!(user.getEnabled() != false));
             builder.password(user.getPassword());
 
             String[] authoritiesArr = getAuthorityArr(user.getAuthoritiesList());

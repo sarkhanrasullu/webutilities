@@ -42,5 +42,10 @@ public class FormData implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     private User userId;
 
-
+    @Override
+    public String toString() {
+        return "FormData{" +
+                "id=" + id +
+                '}';
+    }
 }

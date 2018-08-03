@@ -4,6 +4,7 @@ import com.bsptechs.beans.FormColumnDto;
 import com.bsptechs.entities.Form;
 import com.bsptechs.entities.FormColumn;
 import com.bsptechs.service.inter.FormColumnServiceInter;
+import com.bsptechs.service.inter.FormServiceInter;
 import com.bsptechs.util.HtmlPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 
@@ -23,21 +25,27 @@ public class FormColumnController {
     @Autowired
     FormColumnServiceInter fcsi;
 
+
     @RequestMapping(method = RequestMethod.GET)
-    public String formIndex(Map<String, Object> model, @ModelAttribute("formColumns") FormColumnDto formColumn) {
-        ArrayList list = fcsi.findAll();
-        model.put("formColumns", list);
+    public String formIndex(Map<String, Object> model, @ModelAttribute("formColumns") FormColumnDto column,
+                            @RequestParam Form formId) {
+        List<FormColumn> list = fcsi.findColumnsByFormId(formId);
+        model.put("columnList", list);
+        model.put("column", column);
+
         return HtmlPage.pageFormColumn;
     }
 
     @RequestMapping(path = "crud", method = RequestMethod.POST)
     public String userCrud(
             @ModelAttribute("formColumns") FormColumnDto formColumnDto,
-            @RequestParam String action) {
+            @RequestParam String action,
+            @RequestParam int formId) {
+        Form form = new Form(formId);
         FormColumn formColumn = new FormColumn(formColumnDto.getId());
         formColumn.setName(formColumnDto.getName());
-        formColumn.setFormId(new Form(formColumnDto.getId()));
-        formColumn.setFormWebsite(new Form(formColumnDto.getFormWebsite()));
+        formColumn.setFormId(form);
+        formColumn.setFormWebsite(form);
 
         if (action != null) {
             if (action.equalsIgnoreCase("add")) {
@@ -50,6 +58,6 @@ public class FormColumnController {
         }
 
 
-        return "redirect:/" + HtmlPage.pageFormColumn;
+        return "redirect:/formColumns" ;
     }
 }

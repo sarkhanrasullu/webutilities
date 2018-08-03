@@ -55,7 +55,7 @@ public class User implements Serializable {
     @Column(name = "facebook_login")
     private String facebookLogin;
     @Column(name = "enabled")
-    private int enabled;
+    private Boolean enabled;
     @OneToMany(mappedBy = "userId", fetch = FetchType.EAGER)
     private List<Authorities> authoritiesList;
 
@@ -66,5 +66,12 @@ public class User implements Serializable {
 
     public User(){
 
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                '}';
     }
 }

@@ -20,13 +20,13 @@
                             <div class="content table-responsive table-full-width">
                                 <button type="button" class="btn btn-info aBtn" data-toggle="modal" data-target="#exampleModal">Add</button>
                                 <table class="table table-hover table-striped">
-                                    <thead>
+                                    <thead >
 
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Website</th>
-                                        <th></th>
-                                        <th></th>
+                                        <!--<th></th>-->
+                                        <!--<th></th>-->
                                     </thead>
                                     <tbody >
                                         <tr  th:each="f : ${formList}">
@@ -34,10 +34,10 @@
                                             <td th:text="${f.name}">Registration form</td>
                                             <td th:text="${f.website}">www.bsptechs.com</td>
                                             <td>
-                                                <a href="/formcolumns" class="fas fa-wrench"></a>
+                                                <a th:href="@{/formColumns(formId = ${f.getId()})}" class="fas fa-wrench"/>
                                             </td>
                                             <td>
-                                                <a href="/formdata" class="far fa-eye">
+                                                <a th:href="@{/formData(formId = ${f.getId()})}" class="far fa-eye"/>
                                                 </a>
                                             </td>
                                         </tr>
@@ -57,7 +57,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add data</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Add form</h5>
                     </div>
                     <form
                             action="#"
