@@ -1,5 +1,6 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:td="http://www.thymeleaf.org" xmlns:tr="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:td="http://www.thymeleaf.org" xmlns:tr="http://www.thymeleaf.org"
       lang="en">
 <head>
     <div th:insert="common/fragments/header :: header"></div>
@@ -27,8 +28,8 @@
                                         </th>
                                     </thead>
                                     <tbody >
-                                        <tr th:each="f : ${dataList}">
-                                            <td th:text="${f.value}"></td>
+                                        <tr  th:each="f : ${dataList}">
+                                            <td th:text="${f.getValue()}" th:for="${f.key}"></td>
                                         </tr>
                                     </tbody>
                                 </table>
