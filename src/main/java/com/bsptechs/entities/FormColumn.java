@@ -51,8 +51,6 @@ public class FormColumn implements Serializable {
 
     @Override
     public String toString() {
-        return "FormColumn{" +
-                "id=" + id +
-                '}';
+        return name;
     }
 }

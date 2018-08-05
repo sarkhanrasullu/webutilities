@@ -1,5 +1,6 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:td="http://www.thymeleaf.org" xmlns:tr="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:td="http://www.thymeleaf.org" xmlns:tr="http://www.thymeleaf.org"
       lang="en">
 <head>
     <div th:insert="common/fragments/header :: header"></div>
@@ -15,20 +16,27 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Data of Generated Form</h4>
-                                <p class="category">Data of Generated form</p>
+                                <h4 class="title">Form Data</h4>
+                                <p class="category"></p>
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <button type="button" class="btn btn-info aBtn" data-toggle="modal" data-target="#exampleModal">Add</button>
                                     <table class="table table-hover table-striped" >
-                                    <thead >
+                                    <thead>
+                                        <th>#</th>
                                         <th th:each="c : ${columnList}">
                                             <th:block th:text="${c.name}"/>
                                         </th>
                                     </thead>
-                                    <tbody >
-                                        <tr th:each="f : ${dataList}">
-                                            <td th:text="${f.value}"></td>
+                                    <tbody>
+                                        <tr th:each="key,iter : ${rows.keySet()}">
+                                            <td>
+                                                <input th:type="hidden" th:name="id" th:value="${key}"/>
+                                                <span th:text="${iter.index+1}"></span>
+                                            </td>
+                                            <span th:each="row : ${rows.get(key)}">
+                                                <td th:each="r : ${row}" th:text="${r['value']}" ></td>
+                                            </span>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -53,17 +61,12 @@
                             th:object="${data}"
                             method="POST">
                         <div class="modal-body">
-
                             <div class="form-group" th:each="c : ${columnList}" >
-
                                     <label th:text="${c.name}" />
                                     <input  class="form-control" th:field=*{value} />
-                                <input  th:name="formId" type="hidden" th:value="${#request.getParameter('formId')}"/>
-                                <input  th:name="columnId" type="hidden" th:value="${c.id}"/>
-                                </div>
-
-
-
+                                    <input  th:name="formId" type="hidden" th:value="${#request.getParameter('formId')}"/>
+                                    <input  th:name="columnId" type="hidden" th:value="${c.id}"/>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

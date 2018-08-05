@@ -58,6 +58,6 @@ public class FormColumnController {
         }
 
 
-        return "redirect:/formColumns" ;
+        return "redirect:/formColumns?formId="+formId ;
     }
 }

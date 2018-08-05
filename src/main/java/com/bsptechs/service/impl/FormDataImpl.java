@@ -8,8 +8,6 @@ import com.bsptechs.service.inter.FormDataServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -37,11 +35,15 @@ public class FormDataImpl implements FormDataServiceInter {
     @Override
     public List<FormData> findAll() {
         return formDataDao.findAll();
-
     }
 
     @Override
     public List<FormData> findAllByFormColumnId(FormColumn formId) {
         return formDataDao.findAllByFormColumnId(formId);
+    }
+
+    @Override
+    public List<FormData> findAllByFormId(Form formId){
+        return formDataDao.findAllByFormId(formId);
     }
 }

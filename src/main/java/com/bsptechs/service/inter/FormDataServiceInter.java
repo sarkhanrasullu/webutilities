@@ -18,5 +18,8 @@ public interface FormDataServiceInter {
 
     List<FormData> findAll();
 
-    List<FormData> findAllByFormColumnId(FormColumn formId);
+    List<FormData> findAllByFormColumnId(FormColumn formColumnId);
+
+    List<FormData> findAllByFormId(Form formId);
+
 }

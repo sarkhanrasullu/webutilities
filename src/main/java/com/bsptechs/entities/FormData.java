@@ -42,10 +42,13 @@ public class FormData implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     private User userId;
 
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "uid")
+    private String uId;
+
     @Override
     public String toString() {
-        return "FormData{" +
-                "id=" + id +
-                '}';
+        return value;
     }
 }

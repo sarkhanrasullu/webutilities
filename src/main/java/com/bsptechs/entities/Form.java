@@ -49,8 +49,6 @@ public class Form implements Serializable {
 
     @Override
     public String toString() {
-        return "Form{" +
-                "id=" + id +
-                '}';
+        return name;
     }
 }
