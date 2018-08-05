@@ -19,6 +19,7 @@
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <button type="button" class="btn btn-info aBtn" data-toggle="modal" data-target="#exampleModal">Add</button>
+
                                 <table class="table table-hover table-striped">
                                     <thead >
 
@@ -29,7 +30,7 @@
                                         <!--<th></th>-->
                                     </thead>
                                     <tbody >
-                                        <tr  th:each="f : ${formList}">
+                                        <tr  th:each="f : ${formList}" th:onclick="'setId('+ *{f.id} +')'" >
                                             <td th:text="${f.id}">1</td>
                                             <td th:text="${f.name}">Registration form</td>
                                             <td th:text="${f.website}">www.bsptechs.com</td>
@@ -38,8 +39,9 @@
                                             </td>
                                             <td>
                                                 <a th:href="@{/formData(formId = ${f.getId()})}" class="far fa-eye"/>
-                                                </a>
+
                                             </td>
+
                                         </tr>
                                     </tbody>
                                 </table>

@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 import java.util.function.Consumer;
 
 
@@ -35,12 +33,15 @@ public class FormDataController {
     public String formIndex(Map<String, Object> model, @ModelAttribute("data") FormDataDto data ,
                             @RequestParam Form formId) {
 
-
+        HashMap<FormColumn,List<FormData>> dataList = new HashMap<>();
         List<FormColumn> columnList = fci.findColumnsByFormId(formId);
-        for (FormColumn columns : columnList) {
-            List<FormData> list = fdi.findAllByFormColumnId(columns);
-            model.put("dataList", list);
+        for (int i=0; i<columnList.size();i++) {
+            List<FormData> list = fdi.findAllByFormColumnId(columnList.get(i));
+            for (int j = 0; j < list.size(); j++) {
+                dataList.put(columnList.get(i), list);
+            }
         }
+        model.put("dataList", dataList);
         model.put("columnList", columnList);
             model.put("data", data);
 
@@ -50,29 +51,37 @@ public class FormDataController {
     @RequestMapping(path = "crud", method = RequestMethod.POST)
     public String userCrud(
             @ModelAttribute("dataForm") FormDataDto formDataDto,
-            @RequestParam String action,@RequestParam int columnId,
+            @RequestParam String action,@RequestParam List<Integer> columnId,
             @RequestParam int formId) {
-
+        HashMap<Integer,String> map = new HashMap<>();
         String[] data = formDataDto.getValue().split(",");
-        for (String fd : data){
-        FormData formData = new FormData();
-        formData.setId(formDataDto.getId());
-        formData.setValue(fd);
-        formData.setFormColumnId(new FormColumn(columnId));
-        formData.setFormId(new Form(formId));
-        formData.setUserId(new User(1));
 
-        if (action != null) {
-            if (action.equalsIgnoreCase("add")) {
-                fdi.save(formData);
-            } else if (action.equalsIgnoreCase("delete")) {
-                fdi.deleteById(formDataDto.getId());
-            } else if (action.equalsIgnoreCase("update")) {
-                formData.setId(formDataDto.getId());
-                fdi.save(formData);
-            }
+        for (int i= 0; i<data.length;i++) {
 
+            map.put(columnId.get(i), data[i]);
         }
+            Iterator<Map.Entry<Integer,String>> entries = map.entrySet().iterator();
+            while (entries.hasNext()) {
+                Map.Entry<Integer, String> entry = entries.next();
+
+                FormData formData = new FormData();
+                formData.setId(formDataDto.getId());
+                formData.setValue(entry.getValue());
+                formData.setFormColumnId(new FormColumn(entry.getKey()));
+                formData.setFormId(new Form(formId));
+                formData.setUserId(new User(1));
+
+                if (action != null) {
+                    if (action.equalsIgnoreCase("add")) {
+                        fdi.save(formData);
+                    } else if (action.equalsIgnoreCase("delete")) {
+                        fdi.deleteById(formDataDto.getId());
+                    } else if (action.equalsIgnoreCase("update")) {
+                        formData.setId(formDataDto.getId());
+                        fdi.save(formData);
+                    }
+                }
+
         }
 
 

@@ -44,8 +44,6 @@ public class FormData implements Serializable {
 
     @Override
     public String toString() {
-        return "FormData{" +
-                "id=" + id +
-                '}';
+        return value;
     }
 }
