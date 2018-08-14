@@ -2,42 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8258075c-6822-4647-8e1f-825d6c4a2cb0" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/webutils_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/webutils_test.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/form/iFrame.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/bsptechs/beans/FormDataDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/bsptechs/beans/FormDataDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/bsptechs/controller/FormColumnController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/bsptechs/controller/FormColumnController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/bsptechs/controller/FormController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/bsptechs/controller/FormController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/bsptechs/controller/FormDataController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/bsptechs/controller/FormDataController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/bsptechs/dao/inter/FormDataDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/bsptechs/dao/inter/FormDataDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/bsptechs/entities/Form.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/bsptechs/entities/Form.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/bsptechs/entities/FormData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/bsptechs/entities/FormData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/bsptechs/service/impl/FormColumnImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/bsptechs/service/impl/FormDataImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/bsptechs/service/inter/FormDataServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/bsptechs/service/inter/FormDataServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/static/assets/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/static/assets/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/bsptechs/beans/FormColumnDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/bsptechs/beans/FormColumnDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/bsptechs/beans/FormDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/bsptechs/beans/FormDto.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/resources/templates/form/form.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/templates/form/form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/templates/form/formColumn.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/templates/form/formColumn.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/templates/form/formData.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/templates/form/formData.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptechs/beans/FormColumnDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptechs/beans/FormColumnDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptechs/beans/FormDataDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptechs/beans/FormDataDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptechs/beans/FormDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptechs/beans/FormDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptechs/controller/FormColumnController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptechs/controller/FormColumnController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptechs/controller/FormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptechs/controller/FormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptechs/controller/FormDataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptechs/controller/FormDataController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptechs/dao/inter/FormDataDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptechs/dao/inter/FormDataDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptechs/entities/Form.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptechs/entities/Form.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptechs/entities/FormData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptechs/entities/FormData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptechs/service/impl/FormColumnImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptechs/service/impl/FormColumnServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptechs/service/impl/FormDataImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptechs/service/impl/FormDataServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptechs/service/inter/FormDataServiceInter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptechs/service/inter/FormDataServiceInter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/assets/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/form/form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/form/form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/form/formColumn.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/form/formColumn.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/form/formData.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/form/formData.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -97,8 +68,8 @@
       <file leaf-file-name="FormController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bsptechs/controller/FormController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="43" selection-start-line="43" selection-end-line="43" />
+            <state relative-caret-position="321">
+              <caret line="78" selection-start-line="78" selection-end-line="78" />
             </state>
           </provider>
         </entry>
@@ -112,7 +83,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="formData.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="formData.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/form/formData.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-292">
@@ -124,13 +95,29 @@
       <file leaf-file-name="form.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/form/form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-610">
-              <caret line="34" column="44" lean-forward="true" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="72" />
+            <state relative-caret-position="124">
+              <caret line="21" column="107" selection-start-line="21" selection-start-column="107" selection-end-line="21" selection-end-column="107" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="iFrame.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/form/iFrame.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="112">
+              <caret line="17" column="52" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -195,10 +182,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/bsptechs/beans/FormColumnDto.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bsptechs/controller/FormColumnController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/form/formColumn.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bsptechs/controller/FormController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/form/form.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/bsptechs/controller/FormDataController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/form/formData.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bsptechs/controller/FormController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/form/form.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/form/iFrame.html" />
       </list>
     </option>
   </component>
@@ -352,6 +340,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -524,12 +513,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1533480791044</updated>
-      <workItem from="1533480807669" duration="88399000" />
+      <workItem from="1533480807669" duration="94284000" />
     </task>
+    <task id="LOCAL-00001" summary="crud is done for all pages">
+      <created>1534262094857</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1534262094857</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="193150000" />
+    <option name="totallyTimeSpent" value="199035000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -589,6 +586,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="crud is done for all pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="crud is done for all pages" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -644,7 +645,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/bsptechs/controller/FormController.java</url>
-          <line>62</line>
+          <line>58</line>
           <properties />
           <option name="timeStamp" value="14" />
         </line-breakpoint>
@@ -677,13 +678,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="622">
-          <caret line="945" column="10" selection-start-line="945" selection-start-column="10" selection-end-line="945" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bsptechs/service/impl/FormColumnServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="319">
@@ -1002,20 +996,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bsptechs/controller/FormController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/form/form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-610">
-          <caret line="34" column="44" lean-forward="true" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bsptechs/controller/FormDataController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="927">
@@ -1027,6 +1007,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-292">
           <caret line="93" column="102" selection-start-line="93" selection-start-column="102" selection-end-line="93" selection-end-column="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bsptechs/controller/FormController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="78" selection-start-line="78" selection-end-line="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/form/form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="21" column="107" selection-start-line="21" selection-start-column="107" selection-end-line="21" selection-end-column="107" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/form/iFrame.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="17" column="52" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
         </state>
       </provider>
     </entry>

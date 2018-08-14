@@ -1,0 +1,48 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<div class="myForm">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add form</h5>
+
+                </div>
+                <form
+                        action="#"
+                        th:action="@{/forms/iFrame}"
+                        method="POST">
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Name"
+                                   th:id="name" th:name="name" th:field=*{name} />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Website"
+                                   th:id="website" th:name="website" th:field=*{website} />
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                        <button type="submit" class="btn btn-primary"
+                                th:name="action"
+                                th:value="add">
+                            Save form
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

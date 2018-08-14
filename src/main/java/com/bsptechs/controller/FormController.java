@@ -37,8 +37,30 @@ public class FormController {
     }
 
     @RequestMapping(path = "crud", method = RequestMethod.POST)
-    public String formCrud(
+    public String iFrames(
             @ModelAttribute("forms") FormDto formDto,
+            @RequestParam String action) {
+
+        Form form = new Form();
+
+        form.setId(formDto.getId());
+
+        form.setName(formDto.getName());
+        form.setWebsite(formDto.getWebsite());
+        if (action != null) {
+            if (action.equalsIgnoreCase("edit")) {
+                System.out.println("edit process");
+                fsi.save(form);
+            } else if (action.equalsIgnoreCase("delete")) {
+                fsi.deleteById(formDto.getId());
+            }
+        }
+
+        return "redirect:/forms";
+    }
+    @RequestMapping(path = "iFrame", method = RequestMethod.POST)
+    public String formCrud(
+            @ModelAttribute("form") FormDto formDto,
             @RequestParam String action) {
         System.out.println("form="+formDto);
         System.out.println("action="+action);
@@ -54,8 +76,7 @@ public class FormController {
             if (action.equalsIgnoreCase("add")) {
                 System.out.println("add process");
                 fsi.save(form);
-            } else if (action.equalsIgnoreCase("delete")) {
-                fsi.deleteById(formDto.getId());
+
             }
         }
 
