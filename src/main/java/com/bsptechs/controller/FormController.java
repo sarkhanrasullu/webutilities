@@ -42,7 +42,12 @@ public class FormController {
             @RequestParam String action) {
         System.out.println("form="+formDto);
         System.out.println("action="+action);
-        Form form = new Form(formDto.getId());
+
+
+        Form form = new Form();
+
+        form.setId(formDto.getId());
+
         form.setName(formDto.getName());
         form.setWebsite(formDto.getWebsite());
         if (action != null) {
@@ -51,8 +56,6 @@ public class FormController {
                 fsi.save(form);
             } else if (action.equalsIgnoreCase("delete")) {
                 fsi.deleteById(formDto.getId());
-            } else if (action.equalsIgnoreCase("update")) {
-                fsi.save(form);
             }
         }
 

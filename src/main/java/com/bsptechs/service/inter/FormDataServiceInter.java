@@ -14,12 +14,14 @@ public interface FormDataServiceInter {
 
     FormData findById(Integer integer);
 
-    void deleteById(Integer integer);
+    void deleteFormDataByUId(String uId);
 
     List<FormData> findAll();
 
     List<FormData> findAllByFormColumnId(FormColumn formColumnId);
 
     List<FormData> findAllByFormId(Form formId);
+
+
 
 }

@@ -1,13 +1,32 @@
+
+
+
+
 $(document).ready(function () {
 
-    $('.table .aBtn ').on('click', function (event) {
+    $('.table .aBtn').on('click', function (event) {
         event.preventDefault();
         $('.myForm #exampleModal').modal();
 
     });
+});
 
+$(document).ready(function () {
 
+    $('.table .eBtn').on('click', function (event) {
+        event.preventDefault();
+        $('.myForm #exampleModal').modal();
 
+    });
+});
+
+$(document).ready(function () {
+
+    $('.table .dBtn ').on('click', function (event) {
+        event.preventDefault();
+        $('.deleteForm #deleteModal').modal();
+
+    });
 });
 
 

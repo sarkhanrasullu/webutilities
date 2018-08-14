@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class FormColumnImpl implements FormColumnServiceInter {
+public class FormColumnServiceImpl implements FormColumnServiceInter {
 
     @Autowired
     private FormColumnDao formColumnDao;

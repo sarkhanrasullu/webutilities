@@ -33,7 +33,7 @@ public class FormDataController {
         List<FormData> allDataOfForm = fdi.findAllByFormId(formId);
 
         for (FormData fc: allDataOfForm) {
-            putData(fc.getUId(), fc, rows);
+            putData(fc.getUid(), fc, rows);
         }
         model.put("rows", rows);
         model.put("columnList", columnList);
@@ -58,37 +58,50 @@ public class FormDataController {
             @ModelAttribute("dataForm") FormDataDto formDataDto,
             @RequestParam String action,
             @RequestParam List<Integer> columnId,
-            @RequestParam int formId) {
+            @RequestParam int formId,
+            @RequestParam List<Integer> formDataIds) {
 
-            HashMap<Integer,String> map = new HashMap<>();
-            String[] data = formDataDto.getValue().split(",");
-
-            String uId = UUID.randomUUID().toString();
-            for (int i= 0; i<data.length;i++) {
-                int id =columnId.get(i);
-                String value = data[i];
-
-                FormData formData = new FormData();
-                formData.setId(formDataDto.getId());
-                formData.setValue(value);
-                formData.setFormColumnId(new FormColumn(id));
-                formData.setFormId(new Form(formId));
-                formData.setUId(uId);//delete ve update zamani bu id-ye gore update ve delete edecen
-//                formData.setUserId(new User(1));
-
-                if (action != null) {
-                    if (action.equalsIgnoreCase("add")) {
-                        fdi.save(formData);
-                    } else if (action.equalsIgnoreCase("delete")) {
-                        fdi.deleteById(formDataDto.getId());
-                    } else if (action.equalsIgnoreCase("update")) {
-                        formData.setId(formDataDto.getId());
-                        fdi.save(formData);
-                    }
+            if(action!=null){
+                if(action.equalsIgnoreCase("delete")){
+                    fdi.deleteFormDataByUId(formDataDto.getUId());
+                }else{
+                    addOrUpdate(columnId,formDataDto,formId,formDataIds,action);
                 }
-        }
+            }
 
         return "redirect:/formData?formId="+formId;
     }
+
+    public void addOrUpdate(List<Integer> columnId, FormDataDto formDataDto, int formId,List<Integer> dataId,String action){
+
+        String[] data = formDataDto.getValue().split(",");
+        String uId = UUID.randomUUID().toString();
+
+        for (int i= 0; i<data.length;i++) {
+            int id =columnId.get(i);
+            String value = data[i];
+
+            FormData formData = new FormData();
+            formData.setId(formDataDto.getId());
+            formData.setValue(value);
+            formData.setFormColumnId(new FormColumn(id));
+            formData.setFormId(new Form(formId));
+            formData.setUid(uId);//delete ve update zamani bu id-ye gore update ve delete edecen
+//                formData.setUserId(new User(1));
+
+            if (action != null) {
+                if (action.equalsIgnoreCase("add")) {
+                    fdi.save(formData);
+                } else if (action.equalsIgnoreCase("edit")) {
+                    formData.setId(dataId.get(i));
+                    formData.setUid(formDataDto.getUId());
+                    System.out.println(formData.getUid());
+                    fdi.save(formData);
+                }
+            }
+        }
+    }
+
+
 
 }
