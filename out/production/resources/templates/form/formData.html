@@ -91,7 +91,6 @@
                                 <label th:text="${c.name.toUpperCase()}"/>
                                 <input  class="form-control"  th:name="value" th:field=*{value} />
                                 <input  th:name="columnId" type="hidden" th:value="${c.id}"/>
-                                <input  name="formDataIds" th:type="hidden" th:value="${c.getId()}" />
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -125,7 +124,7 @@
                             <div class="form-group" th:each="c : ${columnList}" >
                                 <label th:text="${c.name.toUpperCase()}"/>
                                 <input th:attr="key=${c.id}" class="form-control editInput" th:name="value" th:field=*{value} />
-                                <input  th:name="columnId" type="hidden" th:value="${c.id}"/>
+                                <input th:name="columnId" type="hidden" th:value="${c.id}"/>
                                 <input key="dataId" name="formDataIds" th:type="hidden" />
                             </div>
                             <input key="editId" name="uId" th:type="hidden" />
@@ -194,7 +193,7 @@
     }
     function edit(selectedRow) {//bura tr gelir
         console.log(selectedRow);
-        var selectedId = document.querySelectorAll('[key="id"]')[0].value;//bu birinci td-dir key vermishem ona id
+        var selectedId = selectedRow.querySelectorAll('[key="id"]')[0].value;//bu birinci td-dir key vermishem ona id
         var inputUid = document.querySelectorAll('[key="editId"]')[0];//formdaki hiddden id inputu
         inputUid.value=selectedId;
 
@@ -209,7 +208,7 @@
             //setrdeki yeni tr-deki key=9 attribute olan td-ni alir ve innerHTML-ini goturur
             console.log(value);
             input.value = value;//ve bu value-nu input-un ichine doldurur.
-            var dataId = document.querySelectorAll('[key="fId"]')[i].value;
+            var dataId = selectedRow.querySelectorAll('[key="fId"]')[i].value;
             var inputFormId = document.querySelectorAll('[key="dataId"]')[i];
             inputFormId.value = dataId;
 
@@ -220,9 +219,7 @@
     }
 </script>
 
-<script  >
 
-</script>
 
 </body>
 

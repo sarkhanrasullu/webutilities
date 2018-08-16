@@ -18,8 +18,8 @@
                                 <p class="category">List of Forms</p>
                             </div>
                             <div class="content table-responsive table-full-width" >
-
-                                <button   type="button" class="btn btn-info aBtn"  th:src="@{/forms/iframe}" data-toggle="modal" data-target="#exampleModal">Add</button>
+                                 <a th:href="@{/frames}">click me</a>
+                                <button  type="button"  th:href="@{/frames}"  class="btn btn-info" data-toggle="modal" data-target="#addModal">Add</button>
 
                                 <table class="table table-hover table-striped">
                                     <thead >
@@ -42,7 +42,7 @@
                                                 <a th:href="@{/formData(formId = ${f.getId()})}" class="far fa-eye"/>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-info eBtn" data-toggle="modal"
+                                                <button type="button" class="btn btn-primary eBtn" data-toggle="modal"
                                                         th:onclick="'edit(\'' + ${f.id} + '\',\'' + ${f.name}+ '\',\'' +${f.website}+ '\')'" th:value="${f.id}" data-target="#exampleModal">Edit</button>
                                             </td>
                                             <td>
@@ -63,12 +63,15 @@
         <div th:insert="common/fragments/footer_content :: footer_content"></div>
     </div>
 </div>
+
+
+
 <div class="myForm">
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add form</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Edit form</h5>
                     </div>
                     <form
                             action="#"
@@ -143,19 +146,13 @@
     function setId(form) {
         document.getElementById('id').value = form;
    }
-
-</script>
-
-<script >
     function edit(id,name,website) {
         document.getElementById('fId').value = id;
         document.getElementById('name').value =name;
         document.getElementById('website').value =website;
     }
+
 </script>
-
-
-
 
 </body>
 

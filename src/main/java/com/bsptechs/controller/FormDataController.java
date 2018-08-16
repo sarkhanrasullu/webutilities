@@ -21,6 +21,7 @@ public class FormDataController {
 
     @Autowired
     FormDataServiceInter fdi;
+
     @Autowired
     FormColumnServiceInter fci;
 
@@ -29,12 +30,25 @@ public class FormDataController {
                             @ModelAttribute("data") FormDataDto data ,
                             @RequestParam Form formId) {
         List<FormColumn> columnList = fci.findColumnsByFormId(formId);
-        HashMap<String,List<FormData>> rows = new HashMap<>();
+        LinkedHashMap<String,List<FormData>> rows = new LinkedHashMap<>();
         List<FormData> allDataOfForm = fdi.findAllByFormId(formId);
 
         for (FormData fc: allDataOfForm) {
             putData(fc.getUid(), fc, rows);
         }
+
+        Set<String> keySet = rows.keySet();
+
+        for(String k: keySet){
+           List<FormData> values= rows.get(k);
+           for(int i=values.size();i<columnList.size();i++){
+               FormColumn fc = columnList.get(i);
+               FormData fd = new FormData();
+               fd.setFormColumnId(fc);
+               values.add(fd);
+           }
+        }
+
         model.put("rows", rows);
         model.put("columnList", columnList);
         model.put("data", data);
@@ -42,7 +56,7 @@ public class FormDataController {
         return HtmlPage.pageFormData;
     }
 
-    public static void putData(String key, FormData obj,  HashMap<String, List<FormData>> dataList){
+    public static void putData(String key, FormData obj,  LinkedHashMap<String, List<FormData>> dataList){
         List<FormData> data= dataList.get(key);
         if(data!=null){
             data.add(obj);
@@ -55,11 +69,12 @@ public class FormDataController {
 
     @RequestMapping(path = "crud", method = RequestMethod.POST)
     public String userCrud(
-            @ModelAttribute("dataForm") FormDataDto formDataDto,
+            @ModelAttribute("dataForm") FormDataDto formDataDto,//formData objecti duzgun istifade olunmur yeriz yere elan olunub cox shey
+            //bazaram sonra
             @RequestParam String action,
             @RequestParam List<Integer> columnId,
             @RequestParam int formId,
-            @RequestParam List<Integer> formDataIds) {
+            @RequestParam(required = false) List<Integer> formDataIds) {
 
             if(action!=null){
                 if(action.equalsIgnoreCase("delete")){
@@ -82,7 +97,6 @@ public class FormDataController {
             String value = data[i];
 
             FormData formData = new FormData();
-            formData.setId(formDataDto.getId());
             formData.setValue(value);
             formData.setFormColumnId(new FormColumn(id));
             formData.setFormId(new Form(formId));

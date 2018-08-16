@@ -37,7 +37,7 @@ public class FormController {
     }
 
     @RequestMapping(path = "crud", method = RequestMethod.POST)
-    public String iFrames(
+    public String formCrud(
             @ModelAttribute("forms") FormDto formDto,
             @RequestParam String action) {
 
@@ -56,10 +56,18 @@ public class FormController {
             }
         }
 
-        return "redirect:/forms";
+        return "redirect:/form";
     }
-    @RequestMapping(path = "iFrame", method = RequestMethod.POST)
-    public String formCrud(
+
+
+    @RequestMapping(method = RequestMethod.GET, path = "iframe")
+    public String iframeIndex(Map<String, Object> model, @ModelAttribute("form") FormDto form) {
+        model.put("form",form);
+        return HtmlPage.pageFrame;
+    }
+
+    @RequestMapping(path = "iframe/crud", method = RequestMethod.POST)
+    public String iFrameCrud(
             @ModelAttribute("form") FormDto formDto,
             @RequestParam String action) {
         System.out.println("form="+formDto);
@@ -81,6 +89,6 @@ public class FormController {
         }
 
 
-        return "redirect:/forms";
+        return "redirect:/form/iframe";
     }
 }

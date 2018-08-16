@@ -2,11 +2,12 @@
 
 
 
+
 $(document).ready(function () {
 
     $('.table .aBtn').on('click', function (event) {
         event.preventDefault();
-        $('.myForm #exampleModal').modal();
+        $('.myForm #addModal').modal();
 
     });
 });
