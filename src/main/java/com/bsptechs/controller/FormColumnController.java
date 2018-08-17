@@ -40,9 +40,13 @@ public class FormColumnController {
     public String userCrud(
             @ModelAttribute("formColumns") FormColumnDto formColumnDto,
             @RequestParam String action,
-            @RequestParam int formId) {
+            @RequestParam Integer formId) {
         Form form = new Form(formId);
-        FormColumn formColumn = new FormColumn(formColumnDto.getId());
+
+        FormColumn formColumn = new FormColumn();
+        if(formColumnDto.getId() != null){
+            formColumn.setId(formColumnDto.getId());
+        }
         formColumn.setName(formColumnDto.getName());
         formColumn.setFormId(form);
         formColumn.setFormWebsite(form);
@@ -52,8 +56,6 @@ public class FormColumnController {
                 fcsi.save(formColumn);
             } else if (action.equalsIgnoreCase("delete")) {
                 fcsi.deleteById(formColumnDto.getId());
-            } else if (action.equalsIgnoreCase("update")) {
-                fcsi.save(formColumn);
             }
         }
 

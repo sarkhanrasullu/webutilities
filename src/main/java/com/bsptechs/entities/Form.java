@@ -47,6 +47,9 @@ public class Form implements Serializable {
     }
     public Form(String website){this.website=website;}
 
+    public Form() {
+    }
+
     @Override
     public String toString() {
         return name;

@@ -40,23 +40,55 @@ public class FormController {
     public String formCrud(
             @ModelAttribute("forms") FormDto formDto,
             @RequestParam String action) {
+
+        Form form = new Form();
+
+        form.setId(formDto.getId());
+
+        form.setName(formDto.getName());
+        form.setWebsite(formDto.getWebsite());
+        if (action != null) {
+            if (action.equalsIgnoreCase("edit")) {
+                System.out.println("edit process");
+                fsi.save(form);
+            } else if (action.equalsIgnoreCase("delete")) {
+                fsi.deleteById(formDto.getId());
+            }
+        }
+
+        return "redirect:/form";
+    }
+
+
+    @RequestMapping(method = RequestMethod.GET, path = "iframe")
+    public String iframeIndex(Map<String, Object> model, @ModelAttribute("form") FormDto form) {
+        model.put("form",form);
+        return HtmlPage.pageFrame;
+    }
+
+    @RequestMapping(path = "iframe/crud", method = RequestMethod.POST)
+    public String iFrameCrud(
+            @ModelAttribute("form") FormDto formDto,
+            @RequestParam String action) {
         System.out.println("form="+formDto);
         System.out.println("action="+action);
-        Form form = new Form(formDto.getId());
+
+
+        Form form = new Form();
+
+        form.setId(formDto.getId());
+
         form.setName(formDto.getName());
         form.setWebsite(formDto.getWebsite());
         if (action != null) {
             if (action.equalsIgnoreCase("add")) {
                 System.out.println("add process");
                 fsi.save(form);
-            } else if (action.equalsIgnoreCase("delete")) {
-                fsi.deleteById(formDto.getId());
-            } else if (action.equalsIgnoreCase("update")) {
-                fsi.save(form);
+
             }
         }
 
 
-        return "redirect:/forms";
+        return "redirect:/form/iframe";
     }
 }

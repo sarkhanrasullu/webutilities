@@ -45,7 +45,7 @@ public class FormData implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "uid")
-    private String uId;
+    private String uid;
 
     @Override
     public String toString() {

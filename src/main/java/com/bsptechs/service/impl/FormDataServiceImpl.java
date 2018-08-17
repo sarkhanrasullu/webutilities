@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class FormDataImpl implements FormDataServiceInter {
+public class FormDataServiceImpl implements FormDataServiceInter {
 
     @Autowired
     private FormDataDao formDataDao;
@@ -28,8 +28,10 @@ public class FormDataImpl implements FormDataServiceInter {
     }
 
     @Override
-    public void deleteById(Integer integer) {
-        formDataDao.deleteById(integer);
+    public void deleteFormDataByUId(String uId) {
+        System.out.println("begin");
+        formDataDao.deleteAllByUid(uId);
+        System.out.println("end");
     }
 
     @Override
@@ -46,4 +48,6 @@ public class FormDataImpl implements FormDataServiceInter {
     public List<FormData> findAllByFormId(Form formId){
         return formDataDao.findAllByFormId(formId);
     }
+
+
 }

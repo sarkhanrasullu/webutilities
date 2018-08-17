@@ -12,6 +12,7 @@ public class HtmlPage {
     public static final String pageFormColumn = baseFolderForm + "formColumn";
     public static final String pageForm = baseFolderForm + "form";
     public static final String pageFormData = baseFolderForm + "formData";
+    public static final String pageFrame = baseFolderForm + "modal";
 
 }
 

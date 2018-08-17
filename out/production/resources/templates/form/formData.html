@@ -20,7 +20,13 @@
                                 <p class="category"></p>
                             </div>
                             <div class="content table-responsive table-full-width">
-                                <button type="button" class="btn btn-info aBtn" data-toggle="modal" data-target="#exampleModal">Add</button>
+                                <a th:href="@{/forms}" class="btn btn-info">Back</a>
+                                <button type="button"
+                                        class="btn btn-info aBtn"
+                                        data-toggle="modal"
+                                        data-target="#addModal">
+                                    Add
+                                </button>
                                     <table class="table table-hover table-striped" >
                                     <thead>
                                         <th>#</th>
@@ -31,12 +37,32 @@
                                     <tbody>
                                         <tr th:each="key,iter : ${rows.keySet()}">
                                             <td>
-                                                <input th:type="hidden" th:name="id" th:value="${key}"/>
+                                                <input  th:attr="key='id'" th:type="hidden" th:value="${key}">
                                                 <span th:text="${iter.index+1}"></span>
                                             </td>
                                             <span th:each="row : ${rows.get(key)}">
-                                                <td th:each="r : ${row}" th:text="${r['value']}" ></td>
+                                                <td  th:each="r : ${row}"
+                                                     th:text="${r['value']}"
+                                                     th:attr="key=${r['formColumnId']['id']}"
+                                                ></td>
+                                                 <input  th:attr="key='fId'" th:type="hidden" th:value="${row.id}">
+
                                             </span>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-info"
+                                                        data-toggle="modal"
+                                                        th:onclick="'javascript:edit(this.parentElement.parentElement)'"
+                                                        data-target="#editModal">Edit</button>
+                                            </td>
+
+                                            <td>
+                                                <button type="button" class="btn btn-danger dBtn"
+                                                        data-toggle="modal"
+                                                        th:onclick="'javascript:remove(\''+${key}+'\')'"
+                                                        th:value="${key}"
+                                                        data-target="#deleteModal">Delete</button>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -47,25 +73,24 @@
             </div>
         </div>
         <div th:insert="common/fragments/footer_content :: footer_content"></div>
-    </div>0
+    </div>
     <div class="myForm">
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="false">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add data</h5>
+                        <h5 class="modal-title" id="addModalLabel">Add data</h5>
                     </div>
-                    <form
-                            action="#"
+                    <form    action="#"
                             th:action="@{/formData/crud}"
                             th:object="${data}"
                             method="POST">
                         <div class="modal-body">
+                            <input  th:name="formId" type="hidden" th:value="${#request.getParameter('formId')}"/>
                             <div class="form-group" th:each="c : ${columnList}" >
-                                    <label th:text="${c.name}" />
-                                    <input  class="form-control" th:field=*{value} />
-                                    <input  th:name="formId" type="hidden" th:value="${#request.getParameter('formId')}"/>
-                                    <input  th:name="columnId" type="hidden" th:value="${c.id}"/>
+                                <label th:text="${c.name.toUpperCase()}"/>
+                                <input  class="form-control"  th:name="value" th:field=*{value} />
+                                <input  th:name="columnId" type="hidden" th:value="${c.id}"/>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -73,7 +98,7 @@
                             <button type="submit" class="btn btn-primary"
                                     th:name="action"
                                     th:value="add">
-                                Add Data
+                                Submit
                             </button>
                         </div>
                     </form>
@@ -81,12 +106,120 @@
             </div>
         </div>
     </div>
+    <div class="myForm">
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="false">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel">Edit data</h5>
+                    </div>
+                    <form
+                            action="#"
+                            th:action="@{/formData/crud}"
+                            th:object="${data}"
+                            method="POST">
+                        <div class="modal-body">
+                            <input  th:name="formId" type="hidden" th:value="${#request.getParameter('formId')}"/>
+
+                            <div class="form-group" th:each="c : ${columnList}" >
+                                <label th:text="${c.name.toUpperCase()}"/>
+                                <input th:attr="key=${c.id}" class="form-control editInput" th:name="value" th:field=*{value} />
+                                <input th:name="columnId" type="hidden" th:value="${c.id}"/>
+                                <input key="dataId" name="formDataIds" th:type="hidden" />
+                            </div>
+                            <input key="editId" name="uId" th:type="hidden" />
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary"
+                                    th:name="action"
+                                    th:value="edit">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="myDeleteForm">
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form
+                            action="#"
+                            th:action="@{/formData/crud}"
+                            th:object="${data}"
+                            method="POST">
+                    <div class="modal-body">
+
+                        <p class="alert alert-danger">
+                            Are you sure you want to delete this data?
+                        </p>
+                        <div class="form-group" th:each="c : ${columnList}" >
+                            <input  th:name="formId" type="hidden" th:value="${#request.getParameter('formId')}"/>
+                            <input  th:name="columnId" type="hidden" th:value="${c.id}"/>
+                            <input name="formDataIds" th:type="hidden" th:value="${c.getId()}" />
+
+                       </div>
+                        <input th:name="uId"  th:id="uIdDelete" th:type="hidden" />
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary"
+                                th:name="action"
+                                th:value="delete">
+                            Delete Data
+                        </button>
+                    </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
-<script>
-    function setId(id) {
-        document.getElementById("idElement").value = id;
+<script  >
+    function remove(id){
+        document.getElementById('uIdDelete').value = id;
+    }
+    function edit(selectedRow) {//bura tr gelir
+        console.log(selectedRow);
+        var selectedId = selectedRow.querySelectorAll('[key="id"]')[0].value;//bu birinci td-dir key vermishem ona id
+        var inputUid = document.querySelectorAll('[key="editId"]')[0];//formdaki hiddden id inputu
+        inputUid.value=selectedId;
+
+
+
+        var inputs = document.getElementsByClassName("editInput");//bu bizim formun inputlaridir xususi class vermishem ki get ede bilim
+
+        for(var i=0;i<inputs.length;i++){
+            var input = inputs[i];
+            var keyValue =input.getAttribute("key");//"key" keyine uygun olan valuenu verir meselen 9
+            var value = selectedRow.querySelectorAll('[key="'+keyValue+'"]')[0].innerHTML;//sechilmish
+            //setrdeki yeni tr-deki key=9 attribute olan td-ni alir ve innerHTML-ini goturur
+            console.log(value);
+            input.value = value;//ve bu value-nu input-un ichine doldurur.
+            var dataId = selectedRow.querySelectorAll('[key="fId"]')[i].value;
+            var inputFormId = document.querySelectorAll('[key="dataId"]')[i];
+            inputFormId.value = dataId;
+
+            //burada asan yo ile etmek olardi sadece stabil olmazdi.Valuelar qarisha bilerdi
+            //indi ise input deyir ki menim key-im 9-dur buna uygun olan valuenu ver
+            //varidirsa verecek yoxudursa vermeyecek
+        }
     }
 </script>
+
+
 
 </body>
 

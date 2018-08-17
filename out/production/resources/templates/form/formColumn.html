@@ -18,6 +18,7 @@
                                 <p class="category">Columns of Generated form</p>
                             </div>
                             <div class="content table-responsive table-full-width">
+                                <a th:href="@{/forms}" class="btn btn-info">Back</a>
                                 <button type="button" class="btn btn-info aBtn" data-toggle="modal" data-target="#exampleModal">Add</button>
                                 <table class="table table-hover table-striped">
                                     <thead>
@@ -28,10 +29,19 @@
                                     </thead>
                                     <tbody>
                                     <tr th:each="f : ${columnList}">
+
                                         <td th:text="${f.id}">1</td>
                                         <td th:text="${f.name}">Name</td>
                                         <td th:text="${f.formId.name}">Registration Form</td>
                                         <td th:text="${f.formId.website}">www.bsptechs.com</td>
+                                        <td>
+                                            <button type="button" class="btn btn-info eBtn" data-toggle="modal"
+                                                    th:onclick="'edit(\'' + ${f.id} + '\',\'' + ${f.name}+ '\')'" th:value="${f.id}" data-target="#exampleModal">Edit</button>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger dBtn" data-toggle="modal"
+                                                    th:onclick="'setId(\''+${f.id}+'\')'" th:value="${f.id}" data-target="#deleteModal">Delete</button>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -62,6 +72,7 @@
                             </div>
 
                         </div>
+                        <input th:name="id" th:id="cId" th:type="hidden" />
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <input  th:name="formId" type="hidden" th:value="${#request.getParameter('formId')}"/>
@@ -76,10 +87,53 @@
             </div>
         </div>
     </div>
+    <div class="myDeleteForm">
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="#"
+                          th:action="@{/formColumns/crud}"
+                          th:object="${column}"
+                          method="POST">
+                        <div class="modal-body">
+
+                            <p class="alert alert-danger">
+                                Are you sure you want to delete this data?
+                            </p>
+                                 <input  th:name="formId" type="hidden" th:value="${#request.getParameter('formId')}"/>
+                                 <input th:name="id" th:id="id" th:type="hidden"/>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary"
+                                        th:name="action"
+                                        th:value="delete">
+                                    Delete Data
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
     function setId(id) {
-        document.getElementById("idElement").value = id;
+        document.getElementById('id').value = id;
+    }
+</script>
+
+<script>
+    function edit(id,name) {
+        document.getElementById('cId').value = id;
+        document.getElementById('name').value =name;
+
     }
 </script>
 
